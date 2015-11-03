@@ -321,7 +321,7 @@ static void initSidesAndText()
     for( int i=0; i<3; i++ )
         for( int j=0; j<3; j++ )
             layer_add_child( window_layer, text_layer_get_layer( bbuttons[i][j] ) );
-    
+   
 }
 
 static void drawNotepadText()
