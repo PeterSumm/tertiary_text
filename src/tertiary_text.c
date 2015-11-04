@@ -258,7 +258,8 @@ static void drawSides()
         {
             setlist[i][2] = master[top+i];
             text_layer_set_text(bbuttons[i][i==2], setlist[i]);        
-        }
+            text_layer_set_font(bbuttons[i][i==2], fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD));
+      }
     }
 }
 
@@ -278,16 +279,16 @@ static void initSidesAndText()
     Layer *window_layer = window_get_root_layer(window); 
 // 		GRect bounds = layer_get_bounds(window_layer);
 	
-		// Create a text layer for the text that is typed - but it was never used so I commented it out!
+		// Create a text layer for the text that is typed - WTF? - it was never used!
 //     text_layer = text_layer_create((GRect) { .origin = { 0, 72 }, .size = { bounds.size.w, 20 } });
-//     text_layer_set_font(text_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
+//     text_layer_set_font(text_layer, fonts_get_system_font(FONT_KEY_GOTHIC_14_BOLD));
 //     layer_add_child(window_layer, text_layer_get_layer(text_layer));
     
 		// Create a text layer for the title
 #if defined(PBL_ROUND)
-		text_title = text_layer_create( GRect( 30, 18, 85, 30 ) );
+		text_title = text_layer_create( GRect( 30, 18, 85, 32 ) );
 #else
-    text_title = text_layer_create( GRect( 3, 5, 100, 30 ) );
+    text_title = text_layer_create( GRect( 3, 0, 107, 32 ) );
 #endif
 		text_layer_set_font( text_title, fonts_get_system_font( FONT_KEY_GOTHIC_14_BOLD ) );
 		text_layer_set_text( text_title, title );
@@ -298,7 +299,7 @@ static void initSidesAndText()
     text_input = text_layer_create((GRect) { .origin = { 24, 48 }, .size = { 90, 100 } });
     text_layer_set_font(text_input, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
 #else
-    text_input = text_layer_create((GRect) { .origin = { 3, 40 }, .size = { 110, 130 } });
+    text_input = text_layer_create((GRect) { .origin = { 3, 24 }, .size = { 110, 150 } });
     text_layer_set_font(text_input, fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD));
 #endif
 
@@ -321,7 +322,7 @@ static void initSidesAndText()
     for( int i=0; i<3; i++ )
         for( int j=0; j<3; j++ )
             layer_add_child( window_layer, text_layer_get_layer( bbuttons[i][j] ) );
-   
+    
 }
 
 static void drawNotepadText()
@@ -363,6 +364,9 @@ void tertiary_text_prompt( const char* _title, TertiaryTextCallback _callback, v
 
 		// Create and configure the window
     window = window_create();
+#ifndef PBL_SDK_3
+    window_set_fullscreen(window,true);
+#endif
     window_set_click_config_provider(window, click_config_provider);
 
     window_set_window_handlers(window, (WindowHandlers) {
