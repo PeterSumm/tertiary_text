@@ -286,17 +286,18 @@ static void initSidesAndText()
     
 		// Create a text layer for the title
 #if defined(PBL_ROUND)
-		text_title = text_layer_create( GRect( 30, 18, 85, 32 ) );
+		text_title = text_layer_create( GRect( 34, 16, 86, 32 ) );
 #else
     text_title = text_layer_create( GRect( 3, 0, 107, 32 ) );
 #endif
 		text_layer_set_font( text_title, fonts_get_system_font( FONT_KEY_GOTHIC_14_BOLD ) );
 		text_layer_set_text( text_title, title );
+		text_layer_set_text( text_title, "This is a test and another test." );
 		layer_add_child( window_layer, text_layer_get_layer( text_title ) );
 
     // Create a text layer for the text that has been typed - PRS
 #if defined(PBL_ROUND)
-    text_input = text_layer_create((GRect) { .origin = { 24, 48 }, .size = { 90, 100 } });
+    text_input = text_layer_create((GRect) { .origin = { 32, 40 }, .size = { 90, 120 } });
     text_layer_set_font(text_input, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
 #else
     text_input = text_layer_create((GRect) { .origin = { 3, 24 }, .size = { 110, 150 } });
@@ -309,9 +310,9 @@ static void initSidesAndText()
     for (int i = 0; i<3; i++)
     {
 #if defined(PBL_ROUND)
-        buttons1[i] = text_layer_create((GRect) { .origin = { 120, 12*i+14 }, .size = { 100, 100 } });
-        buttons2[i] = text_layer_create((GRect) { .origin = { 120, 12*i+64 }, .size = { 100, 100 } });
-        buttons3[i] = text_layer_create((GRect) { .origin = { 120, 12*i+114 }, .size = { 100, 100 } });
+        buttons1[i] = text_layer_create((GRect) { .origin = { 125, 12*i+14 }, .size = { 100, 100 } });
+        buttons2[i] = text_layer_create((GRect) { .origin = { 125, 12*i+64 }, .size = { 100, 100 } });
+        buttons3[i] = text_layer_create((GRect) { .origin = { 125, 12*i+114 }, .size = { 100, 100 } });
 #else
         buttons1[i] = text_layer_create((GRect) { .origin = { 115, 12*i }, .size = { 100, 100 } });
         buttons2[i] = text_layer_create((GRect) { .origin = { 115, 12*i+50 }, .size = { 100, 100 } });
